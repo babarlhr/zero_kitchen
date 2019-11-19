@@ -25,7 +25,7 @@
     'depends': ['point_of_sale'],
     'data': [
         'security/ir.model.access.csv',
-        'views/kitchen_templates.xml',
+        'views/assets.xml',
         'views/pos_kitchen.xml',
     ],
     'qweb': ['static/src/xml/pos_kitchen.xml'],
