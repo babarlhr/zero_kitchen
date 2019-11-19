@@ -6,12 +6,6 @@
         </span>
     </t>
 
-    <!--t t-name="KitchenListButton">
-        <span class="control-button kitchen_list_button">
-            Kitchen List
-        </span>
-    </t>-->
-
     <t t-name="KitchenPopupWidget">
         <div class="modal-dialog">
             <div class="popup popup-Kitchen-order">
@@ -40,87 +34,6 @@
         </div>
     </t>
 
-    <t t-name="KitchenResultPopupWidget">
-        <div class="modal-dialog">
-            <div class="popup popup_Kitchen_ref">
-                <p class="body"><t t-esc="widget.options.body || '' "/></p>
-                <div class="footer">
-                    <div class="button cancel">
-                        OK
-                    </div>
-                </div>
-            </div>
-        </div>
-    </t>
-
-    <!--t t-name="KitchenListScreenWidget">
-        <div class="kitchen_list-screen screen">
-            <div class="screen-content">
-                <section class="top-content">
-                    <span class='button back'>
-                        <i class='fa fa-angle-double-left'></i>
-                        Back
-                    </span>
-                    <span class='searchbox'>
-                        <input placeholder='Search Kitchen' />
-                        <span class='search-clear'></span>
-                    </span>
-                    <span class='searchbox'></span>
-                </section>
-                <section class="full-content">
-                    <div class='window'>
-                        <section class='subwindow'>
-                            <div class='subwindow-container'>
-                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
-                                    <table class='Kitchen-list'>
-                                        <thead>
-                                            <tr>
-                                                <th>Kitchen Reference</th>
-                                                <th>Date</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class='kitchen-list-contents'>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </t>
-
-    <t t-name="KitchenLine">
-        <tr class='kitchen-line' t-att-data-id='kitchen.id'>
-            <td><t t-esc='kitchen.name' /></td>
-            <td><t t-esc='kitchen.date_order' /></td>
-            <td><button class="confirm_kitchen"><i class='fa fa-angle-double-right'></i>
-                Confirm
-            </button></td>
-        </tr>
-    </t>-->
-
-    <t t-extend="PosTicket">
-        <t t-jquery='.receipt-change' t-operation='after'>
-            <t t-if='order.kitchen_ref'>
-                <br/>
-                <div class='receipt-kitchen'>
-                    <table class='receipt-kitchen-ref'>
-                        <tr>
-                            <td class="pos-left-align">
-                                Kitchen Ref:
-                            </td>
-                            <td class="pos-right-align">
-                                <t t-esc='order.Kitchen_ref["name"]' />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </t>
-        </t>
-    </t>
 </template>
 
 
