@@ -14,7 +14,7 @@ var _t = core._t;
 var KitchenPopupWidget = PopupWidget.extend({
     template: 'KitchenPopupWidget',
     events: _.extend({}, PopupWidget.prototype.events,{
-        "keyup .order_date" : "date_validate",
+        "keyup .order_date" : ".order_date",
     }),
     show: function(options){
         options = options || {};
@@ -22,15 +22,7 @@ var KitchenPopupWidget = PopupWidget.extend({
         this._super(options);
         this.renderElement();
     },
-    date_validate: function(){
-        var v = $(".order_date").val();
-        if (v.match(/^\d{4}$/) !== null) {
-            $(".order_date").val(v + '/');
-            }
-        else if (v.match(/^\d{4}\/\d{2}$/) !== null) {
-            $(".order_date").val(v + '/');
-            }
-        },
+    
     click_confirm: function(){
         var self = this;
         var new_kitchen = [];
@@ -42,40 +34,11 @@ var KitchenPopupWidget = PopupWidget.extend({
         var order_lines = this.pos.get_order().get_orderlines();
         var order_date = this.$('.order_date').val();
         var order_note = this.$('.order_note').val();
-        var valid_date = true;
-        var validatePattern = /^(\d{4})([/|-])(\d{1,2})([/|-])(\d{1,2})$/;
+        
         if (order_date){
-            var dateValues = order_date.match(validatePattern);
-            if (dateValues == null){
-                valid_date = false;
-            }
-            else{
-                var orderYear = dateValues[1];
-                var orderMonth = dateValues[3];
-                var orderDate =  dateValues[5];
-                if ((orderMonth < 1) || (orderMonth > 12)) {
-                    valid_date = false;
-                }
-                else if ((orderDate < 1) || (orderDate> 31)) {
-                    valid_date = false;
-                }
-                else if ((orderMonth==4 || orderMonth==6 || orderMonth==9 || orderMonth==11) && orderDate ==31) {
-                    valid_date = false;
-                }
-                else if (orderMonth == 2){
-                    var isleap = (orderYear % 4 == 0 && (orderYear % 100 != 0 || orderYear % 400 == 0));
-                    if (orderDate> 29 || (orderDate ==29 && !isleap)){
-                        valid_date = false;
-                    }
-                }
-                var dates = [orderYear,orderMonth,orderDate];
-                order_date = dates.join('-');
-            }
+            var dateValues = order_date
         }
-        $('.alert_msg').text("");
-        if (order_date && order_date < today || valid_date==false || !order_date){
-            $('.alert_msg').text("Please Select Valid Order Date!");
-        }
+        
         else{
             $('.alert_msg').text("");
             if (order_date){
