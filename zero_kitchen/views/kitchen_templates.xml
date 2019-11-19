@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="pos_kitchen_template" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/zero_kitchen/static/src/css/pos_kitchen.css" />
+            <script type="text/javascript" src="/zero_kitchen/static/src/js/models.js"/>
+            <script type="text/javascript" src="/zero_kitchen/static/src/js/pos_kitchen.js"/>
+        </xpath>
+    </template>
+</odoo>

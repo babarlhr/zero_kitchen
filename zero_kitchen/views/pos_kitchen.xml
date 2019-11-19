@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_pos_pos_kitchen_form" model="ir.ui.view">
+        <field name="name">pos.order.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="kitchen_ref"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="seq_pos_kitchen" model="ir.sequence">
+        <field name="name">POS Kitchen</field>
+        <field name="code">pos.kitchen</field>
+        <field name="prefix">POS/kitchen/%(range_year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <record id="view_pos_kitchen_form" model="ir.ui.view">
+        <field name="name">pos.kitchen.form</field>
+        <field name="model">pos.kitchen</field>
+        <field name="arch" type="xml">
+            <form string="Point of Sale kitchen Orders" create="false">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed" />
+                </header>
+                <sheet>
+                <group col="3" colspan="3" name="order_fields">
+                    <field name="name"/>
+                    <field name="date_order"/>
+                    <field name="date_kitchen"/>
+                </group>
+                <notebook colspan="3">
+                    <page string="Products">
+                        <field name="lines" colspan="2" nolabel="1">
+                            <tree string="Order lines" editable="bottom">
+                                <field name="product_id"/>
+                                <field name="qty"/>
+                              </tree>
+                            <form string="Order lines">
+                                <group col="3">
+                                    <field name="product_id"/>
+                                    <field name="qty"/>
+                                     <field name="notice"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    
+                    <page string="Notes" >
+                        <field name="note"/>
+                    </page>
+                    
+                </notebook>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pos_kitchen_tree" model="ir.ui.view">
+        <field name="name">pos.kitchen.tree</field>
+        <field name="model">pos.kitchen</field>
+        <field name="arch" type="xml">
+            <tree string="Point of Sale kitchen Orders" create="false" decoration-danger="state == 'draft'" decoration-success="state == 'confirmed'" >
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_pos_kitchen_form" model="ir.actions.act_window">
+        <field name="name">kitchen Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.kitchen</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new order.
+            </p><p>
+                Use this menu to browse previous kitchen orders. To record new
+                kitchen orders, you may use the menu <i>Your Session</i> for
+                the touchscreen interface.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_pos_kitchen"
+              name="Kitchen"
+              parent="point_of_sale.menu_point_of_sale"
+              action="action_pos_kitchen_form"
+              sequence="0"
+              groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>
+
+    <record id="view_pos_kitchen_config_form" model="ir.ui.view">
+        <field name="name">pos.config.form.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='receipt']" position="after">
+                <h2 name="order">Kitchen</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_kitchen"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_kitchen"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
