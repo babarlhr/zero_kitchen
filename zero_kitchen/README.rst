@@ -19,8 +19,6 @@ Features
 
 * 'Create kitchen' button in POS.
 * Create pos kitchens.
-* 'kitchen List' button in POS.
-* kitchen list window.
 * Manage kitchens from POS.
 * kitchen reference in order receipt and order.
 
@@ -31,9 +29,7 @@ Usage
 * Otherwise it will raise an alert popup with invalid order line.
 * On confirming kitchen creation with invalid order date, display an error message.
 * On confirming Order Creation, create kitchen with order lines and it shows popup with kitchen reference.
-* You can view all draft kitchens on 'kitchen List' button click.
 * There is a confirm option for each kitchens.
-* On confirming kitchen, order lines and customer assigned with kitchen details.
 
 
 Credits
